@@ -1,28 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   cost.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babodere <babodere@42.fr>                  +#+  +:+       +#+        */
+/*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 14:30:01 by babodere          #+#    #+#             */
-/*   Updated: 2025/03/07 14:30:01 by babodere         ###   ########.fr       */
+/*   Created: 2025/05/03 23:29:21 by babodere          #+#    #+#             */
+/*   Updated: 2025/05/03 23:29:22 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*temp;
-
-	if (!lst)
-		return ;
-	temp = *lst;
-	while (temp)
-	{
-		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = temp;
-	}
-}

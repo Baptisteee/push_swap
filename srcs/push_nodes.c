@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   push_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babodere <babodere@42.fr>                  +#+  +:+       +#+        */
+/*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 14:28:05 by babodere          #+#    #+#             */
-/*   Updated: 2025/03/07 14:28:05 by babodere         ###   ########.fr       */
+/*   Created: 2025/05/03 22:40:15 by babodere          #+#    #+#             */
+/*   Updated: 2025/05/03 23:03:40 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	push_stack(t_stack *from_stack, t_stack *to_stack)
 {
-	if (!lst)
-		return ;
-	del(lst->content);
-	free(lst);
+	t_list	*pushed_node;
+
+	pushed_node = from_stack->first;
+	from_stack->first = pushed_node->next;
+	ft_lstadd_front(&(to_stack->first), pushed_node);
 }

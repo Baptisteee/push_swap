@@ -6,17 +6,16 @@
 #    By: babodere <babodere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 11:59:34 by babodere          #+#    #+#              #
-#    Updated: 2025/04/27 14:54:08 by babodere         ###   ########.fr        #
+#    Updated: 2025/05/03 23:02:15 by babodere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_DIR = srcs/
 
-LIBFT_DIR = libft/
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-LIBFT = libft.a
-
-SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c)
+SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c)
 
 INCLUDES = $(addprefix ${SRCS_DIR}, push_swap.h)
 
@@ -28,21 +27,21 @@ OBJS = $(SRCS:${SRCS_DIR}%.c=${OBJS_DIR}%.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -ggdb
 
 NAME = push_swap
 
-all: ${LIBFT} ${NAME}
+all: ${NAME}
 
-${NAME}: ${OBJS}
-	${CC} ${CFLAGS} libft/libft.a ${OBJS} -o ${NAME} -I ${INCLUDES}
+${NAME}: ${OBJS} ${LIBFT}
+	${CC} ${CFLAGS} $^ -o $@ -I ${INCLUDES}
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 	@${CREATE_OBJS_DIR}
 	${CC} ${CFLAGS} -c $< -o $@ -I ${INCLUDES}
 
 ${LIBFT}:
-	make -C ${LIBFT_DIR}
+	make bonus -C ${LIBFT_DIR}
 
 clean:
 	make fclean -C ${LIBFT_DIR}
