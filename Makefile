@@ -6,7 +6,7 @@
 #    By: babodere <babodere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 11:59:34 by babodere          #+#    #+#              #
-#    Updated: 2025/05/03 23:02:15 by babodere         ###   ########.fr        #
+#    Updated: 2025/05/04 15:03:24 by babodere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS_DIR = srcs/
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c)
+SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c cost.c)
 
 INCLUDES = $(addprefix ${SRCS_DIR}, push_swap.h)
 
