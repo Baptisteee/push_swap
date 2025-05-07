@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:01:20 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/05 22:46:39 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/07 05:55:06 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ static int	parse_to_tab(char **av, t_list **a)
 	while (av[++i])
 	{
 		if(!is_number_correct(av[i]))
-			return (recursive_free(a), ft_printf("Error"), 0);
+			return (0);
 		j = ft_bigatoi(av[i]);
 		node = ft_lstnew(j);
 		if (!node)
-			return (recursive_free(a), ft_printf("Error"), 0);
+			return (0);
 		ft_lstadd_back(a, node);
 	}
 	return (1);
@@ -82,6 +82,7 @@ static int	parse_to_tab(char **av, t_list **a)
 int	setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack)
 {
 	t_list	*a_first;
+	t_list	*temp;
 	(*a_stack) = (t_stack *) malloc(sizeof(t_stack));
 	if (!a_stack)
 		return (0);
@@ -91,5 +92,16 @@ int	setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack)
 	if(!parse_to_tab(av, &a_first))
 		return (0);
 	(*a_stack)->first = a_first;
+	while (a_first)
+	{
+		temp = a_first->next;
+		while (temp)
+		{
+			if (a_first->number == temp->number)
+				return (0);
+			temp = temp->next;
+		}
+		a_first = a_first->next;
+	}
 	return (1);
 }
