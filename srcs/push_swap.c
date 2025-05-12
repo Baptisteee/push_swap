@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:50:07 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/07 05:58:50 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:26:58 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,49 +20,14 @@ int	main(int ac, char **av)
 	(void) ac;
 	if (!setup_stacks(av, &a_stack, &b_stack))
 		return (ft_printf(ERROR_MESSAGE), free_all(a_stack, b_stack), 1);
-	t_list *temp = a_stack->first;
-	while (temp)
+	if (is_sorted(a_stack))
 	{
-		ft_printf("%d - ", temp->number);
-		temp = temp->next;
+		free_all(a_stack, b_stack);
+		return (ft_printf("Sorted"), 0);
 	}
-	ft_printf("\n\n\n");
-	rotate_stack(a_stack);
-	temp = a_stack->first;
-	while (temp)
-	{
-		ft_printf("%d - ", temp->number);
-		temp = temp->next;
-	}
-	ft_printf("\n\n\n");
-	reverse_rotate_stack(a_stack);
-	temp = a_stack->first;
-	while (temp)
-	{
-		ft_printf("%d - ", temp->number);
-		temp = temp->next;
-	}
-	ft_printf("\n\n\n");
 	push_stack(a_stack, b_stack);
-	temp = a_stack->first;
-	while (temp)
-	{
-		ft_printf("%d - ", temp->number);
-		temp = temp->next;
-	}
-	ft_printf("\n\n\n");
-	push_stack(b_stack, a_stack);
-	temp = a_stack->first;
-	while (temp)
-	{
-		ft_printf("%d - ", temp->number);
-		temp = temp->next;
-	}
-	temp = a_stack->first->next->next->next;
-	ft_printf("\n\n%d\n%d\n\n\n%d", temp->number, get_cost_a(a_stack, temp), (ft_lstsize(a_stack->first)));
-	recursive_free(a_stack->first);
-	recursive_free(b_stack->first);
-	free(a_stack);
-	free(b_stack);
+	push_stack(a_stack, b_stack);
+	// start_algo(a_stack, b_stack);
+	free_all(a_stack, b_stack);
 	return (0);
 }

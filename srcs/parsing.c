@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:01:20 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/07 05:55:06 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:06:39 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int	is_number_correct(char *num)
 		if (!ft_isdigit(num[index++]))
 			return (0);
 	}
-
 	if (ft_strlen(num) > 11)
 		return (0);
 	atoi = ft_bigatoi(num);
@@ -63,12 +62,12 @@ static int	parse_to_tab(char **av, t_list **a)
 	t_list	*node;
 	int		i;
 	long	j;
-	(*a) = NULL;
 
+	(*a) = NULL;
 	i = 0;
 	while (av[++i])
 	{
-		if(!is_number_correct(av[i]))
+		if (!is_number_correct(av[i]))
 			return (0);
 		j = ft_bigatoi(av[i]);
 		node = ft_lstnew(j);
@@ -83,13 +82,14 @@ int	setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack)
 {
 	t_list	*a_first;
 	t_list	*temp;
+
 	(*a_stack) = (t_stack *) malloc(sizeof(t_stack));
 	if (!a_stack)
 		return (0);
 	(*b_stack) = (t_stack *) malloc(sizeof(t_stack));
 	if (!b_stack)
 		return (0);
-	if(!parse_to_tab(av, &a_first))
+	if (!parse_to_tab(av, &a_first))
 		return (0);
 	(*a_stack)->first = a_first;
 	while (a_first)

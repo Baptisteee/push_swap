@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_nodes.c                                       :+:      :+:    :+:   */
+/*   small_algo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 23:01:40 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/12 20:04:47 by babodere         ###   ########.fr       */
+/*   Created: 2025/05/12 16:37:37 by babodere          #+#    #+#             */
+/*   Updated: 2025/05/12 20:03:57 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_stack(t_stack *stack)
+int	calc3(t_stack *stack)
 {
-	t_list	*first;
-	int		temp;
-
-	first = stack->first;
-	temp = first->number;
-	first->number = first->next->number;
-	first->next->number = temp;
-}
-
-void	swap_stacks(t_stack *a_stack, t_stack *b_stack)
-{
-	swap_stack(a_stack);
-	swap_stack(b_stack);
+	if (ft_lstsize(stack->first) != 3)
+		return (0);
+	return (0);
 }
