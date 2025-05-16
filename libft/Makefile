@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: babodere <babodere@student.42.fr>          +#+  +:+       +#+         #
+#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 15:38:38 by babodere          #+#    #+#              #
-#    Updated: 2025/04/27 23:35:32 by babodere         ###   ########.fr        #
+#    Updated: 2025/05/13 19:40:55 by ubuntu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CREATE_OBJS_DIR = mkdir -p $(OBJS_DIR)
 
 BONUS_OBJS = $(BONUS:%.c=${OBJS_DIR}%.o)
 
-INCLUDES = libft.h
+INCLUDES = .
 
 CC = cc
 

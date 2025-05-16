@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: babodere <babodere@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:59:32 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/12 20:05:33 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/14 12:08:04 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 int	is_between(t_list *prev, t_list *next, t_list *node)
 {
-	return ((prev->number < node->number < next->number)
-		|| (prev->number > node->number > next->number));
+	if (!prev || !next || !node)
+		return (-1);
+	return ((prev->number < node->number
+			&& node->number < next->number)
+		|| (prev->number > node->number
+			&& node->number > next->number));
 }
 
 void	recursive_free(t_list *a)
@@ -36,11 +40,9 @@ void	recursive_free(t_list *a)
 
 void	free_all(t_stack *a, t_stack *b)
 {
-	if (a && a->first != NULL)
-		recursive_free(a->first);
+	recursive_free(a->first);
 	free(a);
-	if (b && b->first != NULL)
-		recursive_free(b->first);
+	recursive_free(b->first);
 	free(b);
 }
 

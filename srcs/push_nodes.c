@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: babodere <babodere@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:40:15 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/12 20:04:44 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/16 02:22:48 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,14 @@ void	push_stack(t_stack *from_stack, t_stack *to_stack)
 
 	pushed_node = from_stack->first;
 	from_stack->first = pushed_node->next;
-	ft_lstadd_front(&(to_stack->first), pushed_node);
+	if (from_stack->first)
+		from_stack->first->prev = NULL;
+	pushed_node->prev = NULL;
+	if (!to_stack->first)
+	{
+		to_stack->first = pushed_node;
+		pushed_node->next = NULL;
+	}
+	else
+		ft_lstadd_front(&(to_stack->first), pushed_node);
 }
