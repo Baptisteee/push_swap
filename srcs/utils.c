@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babodere <babodere@42.fr>                  +#+  +:+       +#+        */
+/*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:59:32 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/14 12:08:04 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/18 23:49:00 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ int	is_between(t_list *prev, t_list *next, t_list *node)
 {
 	if (!prev || !next || !node)
 		return (-1);
-	return ((prev->number < node->number
-			&& node->number < next->number)
-		|| (prev->number > node->number
-			&& node->number > next->number));
+	return ((prev->number > node->number && node->number > next->number));
 }
 
 void	recursive_free(t_list *a)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
+#    By: babodere <babodere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 11:59:34 by babodere          #+#    #+#              #
-#    Updated: 2025/05/13 16:08:51 by ubuntu           ###   ########.fr        #
+#    Updated: 2025/05/17 17:26:38 by babodere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SRCS_DIR = srcs/
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c cost.c)
+SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c cost.c algo.c small_algo.c)
 
 INCLUDES = ${SRCS_DIR}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_nodes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:39:58 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/13 16:07:51 by ubuntu           ###   ########.fr       */
+/*   Updated: 2025/05/19 03:51:43 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	rotate_stack(t_stack *stack)
 		node = node->prev;
 	}
 	ft_lstlast(stack->first)->number = prev_data;
+	ft_printf("r%c\n", stack->letter);
 }
 
 void	rotate_stacks(t_stack *a_stack, t_stack *b_stack)
@@ -54,6 +55,7 @@ void	reverse_rotate_stack(t_stack *stack)
 		node = node->next;
 	}
 	stack->first->number = prev_data;
+	ft_printf("rr%c\n", stack->letter);
 }
 
 void	reverse_rotate_stacks(t_stack *a_stack, t_stack *b_stack)

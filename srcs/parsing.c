@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:01:20 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/12 20:06:39 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/19 02:23:44 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ static int	parse_to_tab(char **av, t_list **a)
 	return (1);
 }
 
+void	set_variables(t_stack *a, t_stack *b)
+{
+	a->size = ft_lstsize(a->first);
+	b->size = ft_lstsize(b->first);
+	b->letter = 'b';
+	a->letter = 'a';
+}
+
 int	setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack)
 {
 	t_list	*a_first;
@@ -92,6 +100,7 @@ int	setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack)
 	if (!parse_to_tab(av, &a_first))
 		return (0);
 	(*a_stack)->first = a_first;
+	set_variables(*a_stack, *b_stack);
 	while (a_first)
 	{
 		temp = a_first->next;

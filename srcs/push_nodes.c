@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babodere <babodere@42.fr>                  +#+  +:+       +#+        */
+/*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:40:15 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/16 02:22:48 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/19 03:51:50 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	push_stack(t_stack *from_stack, t_stack *to_stack)
 	if (from_stack->first)
 		from_stack->first->prev = NULL;
 	pushed_node->prev = NULL;
+	to_stack->size++;
+	from_stack->size--;
 	if (!to_stack->first)
 	{
 		to_stack->first = pushed_node;
@@ -28,4 +30,5 @@ void	push_stack(t_stack *from_stack, t_stack *to_stack)
 	}
 	else
 		ft_lstadd_front(&(to_stack->first), pushed_node);
+	ft_printf("p%c\n", to_stack->letter);
 }
