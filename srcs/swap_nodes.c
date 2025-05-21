@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:01:40 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/19 03:51:38 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/20 22:33:11 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 void	swap_stack(t_stack *stack)
 {
 	t_list	*first;
-	int		temp;
+	t_list	*second;
+	t_list	*third;
 
 	first = stack->first;
-	temp = first->number;
-	first->number = first->next->number;
-	first->next->number = temp;
+	second = first->next;
+	third = second->next;
+	
+	stack->first = second;
+	second->next = first;
+	second->prev = NULL;
+	
+	first->prev = second;
+	first->next = third;
+	third->prev = first;
 	ft_printf("s%c\n", stack->letter);
 }
 

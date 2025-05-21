@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
+#    By: babodere <babodere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 15:38:38 by babodere          #+#    #+#              #
-#    Updated: 2025/05/13 19:40:55 by ubuntu           ###   ########.fr        #
+#    Updated: 2025/05/21 06:11:50 by babodere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		ft_atoi.c ft_calloc.c ft_strdup.c ft_putchar_fd.c \
 		ft_putnbr_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_substr.c \
 		ft_split.c ft_striteri.c ft_strjoin.c ft_strmapi.c \
-		ft_itoa.c ft_strtrim.c utils.c ft_puthex.c ft_printf.c
+		ft_itoa.c ft_strtrim.c utils.c ft_puthex.c ft_printf.c \
+		get_next_line.c get_next_line_utils.c
 
 OBJS = $(SRCS:%.c=${OBJS_DIR}%.o)
 

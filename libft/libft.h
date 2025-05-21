@@ -6,13 +6,15 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 06:04:00 by babodere          #+#    #+#             */
-/*   Updated: 2025/04/27 23:35:59 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/21 06:12:03 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 
 # define LIBFT_H
+
+# define BUFFER_SIZE 100
 
 # include <stddef.h>
 # include <stdlib.h>
@@ -66,5 +68,12 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(int number);
 t_list	*ft_lstlast(t_list *lst);
+
+int		check_retval(char stash[BUFFER_SIZE + 1], char *retval);
+size_t	ft_strlen(const char *str);
+char	*get_next_line(int fd);
+char	*ft_strcpy(char *dest, char *src);
+char	*ft_strnew(char *s);
+char	*ft_strcat(char *dst, const char *src);
 
 #endif

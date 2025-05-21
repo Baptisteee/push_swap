@@ -6,7 +6,7 @@
 #    By: babodere <babodere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 11:59:34 by babodere          #+#    #+#              #
-#    Updated: 2025/05/17 17:26:38 by babodere         ###   ########.fr        #
+#    Updated: 2025/05/21 06:22:19 by babodere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ SRCS_DIR = srcs/
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c cost.c algo.c small_algo.c)
+SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c cost.c algo.c small_algo.c median.c)
+
+CHECKER_SRCS = $(addprefix $(SRCS_DIR), checker.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c)
+OBJS_CHECKER = $(SRCS:${CHECKER_SRCS}%.c=${OBJS_DIR}%.o)
 
 INCLUDES = ${SRCS_DIR}
 
@@ -42,6 +45,9 @@ ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 
 ${LIBFT}:
 	make bonus -C ${LIBFT_DIR}
+
+bonus:
+	$(CC) $(CFLAGS) -c $(CHECKER_SRCS) -o $(CHECKER_SRCS) -I.
 
 clean:
 	make fclean -C ${LIBFT_DIR}

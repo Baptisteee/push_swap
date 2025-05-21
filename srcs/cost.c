@@ -6,18 +6,31 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:29:21 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/19 02:25:07 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/20 23:10:17 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	to_abs(int i)
+{
+	if (i < 0)
+		return (i * -1);
+	return (i);
+}
+
+
 int	calculate_cost(int index, int size)
 {
-	if (index > (size / 2))
+	if (index >= (size / 2))
 		return (-(size - index));
-	else
+	else 
 		return (index);
+		// if (index < (size / 2))
+		// return (index);
+	// if (size - index < index)
+	// 	return (-(size - index));
+	// return (index);
 }
 
 int	ft_lstindex(t_stack *stack, t_list *list)
@@ -73,13 +86,15 @@ t_list	*get_smallest_cost(t_stack *a, t_stack *b)
 	while (current)
 	{
 		temp_b = ft_lstindex(b, get_closer(b, current));
-		if (to_abs(calculate_cost(temp_a, a->size)) + to_abs(calculate_cost(temp_b, b->size)) < cost || cost == -1)
+		if (to_abs(calculate_cost(temp_a, a->size))
+			+ to_abs(calculate_cost(temp_b, b->size)) < cost || cost == -1)
 		{
 			smallest = current;
-			cost = to_abs(calculate_cost(temp_a, a->size)) + to_abs(calculate_cost(temp_b, b->size));
+			cost = to_abs(calculate_cost(temp_a, a->size))
+				+ to_abs(calculate_cost(temp_b, b->size));
 		}
 		temp_a++;
-		current = current->next;	
+		current = current->next;
 	}
 	return (smallest);
 }
