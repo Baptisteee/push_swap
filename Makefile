@@ -6,7 +6,7 @@
 #    By: babodere <babodere@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 11:59:34 by babodere          #+#    #+#              #
-#    Updated: 2025/05/21 06:22:19 by babodere         ###   ########.fr        #
+#    Updated: 2025/05/22 03:47:39 by babodere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,30 +28,30 @@ CREATE_OBJS_DIR = mkdir -p $(OBJS_DIR)
 
 OBJS = $(SRCS:${SRCS_DIR}%.c=${OBJS_DIR}%.o)
 
-CC = cc
-
 CFLAGS = -Wall -Wextra -Werror -ggdb
 
 NAME = push_swap
+CHECKER_NAME = checker
 
 all: ${NAME}
 
 ${NAME}: ${OBJS} ${LIBFT}
-	${CC} ${CFLAGS} $^ -o $@ -I ${INCLUDES}
+	cc ${CFLAGS} $^ -o $@ -I ${INCLUDES}
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
 	@${CREATE_OBJS_DIR}
-	${CC} ${CFLAGS} -c $< -o $@ -I ${INCLUDES}
+	cc ${CFLAGS} -c $< -o $@ -I ${INCLUDES}
 
 ${LIBFT}:
 	make bonus -C ${LIBFT_DIR}
 
-bonus:
-	$(CC) $(CFLAGS) -c $(CHECKER_SRCS) -o $(CHECKER_SRCS) -I.
+bonus: $(LIBFT)
+	cc $(CFLAGS) $(CHECKER_SRCS) -o $(CHECKER_NAME) -I.  -Llibft -lft
 
 clean:
 	make fclean -C ${LIBFT_DIR}
 	rm -rf $(OBJS_DIR)
+	rm -rf $(CHECKER_NAME)
 
 fclean: clean
 	rm -f ${NAME}

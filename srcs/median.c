@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 01:58:43 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/21 20:50:20 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/22 02:54:26 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	*parse_to_int(int ac, char **av)
 	int	*tab;
 	int	index;
 
-	tab = (int *) malloc(sizeof(int) * (ac - 1));
+	tab = (int *)malloc(sizeof(int) * (ac - 1));
 	index = 1;
 	while (index < ac)
 	{
@@ -29,28 +29,32 @@ int	*parse_to_int(int ac, char **av)
 
 void	ft_sort_int_tab(int *tab, int len)
 {
-	int	index;
+	int	i;
+	int	j;
 	int	temp;
 
-	index = 0;
-	while (tab[index] && index < len - 1)
+	i = 0;
+	while (i < len)
 	{
-		if (tab[index] > tab[index + 1])
+		j = 0;
+		while (j < len - 1)
 		{
-			temp = tab[index];
-			tab[index] = tab[index + 1];
-			tab[index + 1] = temp;
-			index = 0; 
+			if (tab[j] > tab[i])
+			{
+				temp = tab[j];
+				tab[j] = tab[i];
+				tab[i] = temp;
+			}
+			j++;
 		}
-		else
-			index++;
+		i++;
 	}
 }
 
 int	*get_sorted_tab(int ac, char **av)
 {
 	int	*tab;
-	
+
 	tab = parse_to_int(ac, av);
 	ft_sort_int_tab(tab, ac - 1);
 	return (tab);

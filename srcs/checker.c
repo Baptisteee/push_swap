@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:58:52 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/21 19:09:22 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/22 03:39:32 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	manage_move(t_stack *a, t_stack *b, char *line)
 {
 	if (!ft_strncmp(line, "ra", 2))
-		rotate_stack(a, 1);
+		rotate_stack(a, 0);
 	if (!ft_strncmp(line, "rb", 2))
-		rotate_stack(b, 1);
+		rotate_stack(b, 0);
 	if (!ft_strncmp(line, "rr", 2))
 		rotate_stacks(a, b);
 	if (!ft_strncmp(line, "rra", 3))
-		reverse_rotate_stack(a, 1);
+		reverse_rotate_stack(a, 0);
 	if (!ft_strncmp(line, "rrb", 3))
-		reverse_rotate_stack(b, 1);
+		reverse_rotate_stack(b, 0);
 	if (!ft_strncmp(line, "rrr", 3))
 		reverse_rotate_stacks(a, b);
 	if (!ft_strncmp(line, "pa", 2))
@@ -38,8 +38,8 @@ void	manage_move(t_stack *a, t_stack *b, char *line)
 
 int	main(int ac, char **av)
 {
-	t_stack *a_stack;
-	t_stack *b_stack;
+	t_stack	*a_stack;
+	t_stack	*b_stack;
 	char	*line;
 
 	if (ac < 2)

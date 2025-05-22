@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:27:08 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/21 22:11:59 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/22 03:18:34 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	manage_rotate(t_stack *a, t_stack *b, t_list *current)
 	int		b_sign;
 	int		b_rotate;
 
-	target = get_closer(b, current);
 	a_sign = calculate_cost(ft_lstindex(a, current), a->size);
+	target = get_closer(b, current);
 	a_rotate = to_abs(a_sign);
-	b_sign = calculate_cost(ft_lstindex(b, get_closer(b, current)), b->size);
+	b_sign = calculate_cost(ft_lstindex(b, target), b->size);
 	if (current->number > target->number)
-		b_sign = calculate_cost(ft_lstindex(b, get_closer(b, current)), b->size) + 1;
+		b_sign = calculate_cost(ft_lstindex(b, target), b->size) + 1;
 	b_rotate = to_abs(b_sign);
 	while (((b_sign < 0 && a_sign < 0) || (a_sign > 0 && b_sign > 0))
 		&& a_rotate && b_rotate)
@@ -72,49 +72,43 @@ void	put_smallest_on_top(t_stack *stack)
 
 void	push_back(t_stack *a, t_stack *b)
 {
-	t_list	*target;
+	t_list	*current;
 
 	while (b->size)
 	{
-		target = get_smallest_cost(b, a);
-		if (!target)
+		current = get_smallest_cost(b, a);
+		if (!current)
 			return ;
-		manage_rotate(b, a, target);
+		manage_rotate(b, a, current);
 		push_stack(b, a);
 	}
 }
 
-void	algo(t_stack *a, t_stack *b, int first, int median, int last)
+void	algo(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
 {
-	t_list	*current;
-	int		temp_number;
+	int	ctr;
 
-	while (a->size > a->og_size / 2 + 1)
+	ctr = 0;
+	while (ctr < (a->og_size / 2) - 1)
 	{
-		current = a->first;
-		temp_number = current->number;
-		if (temp_number < first)
+		if (a->first->number > norm_idiot.median)
 		{
+			ctr++;
 			push_stack(a, b);
-			rotate_stack(b, 1);
+			if (b->first->number <= norm_idiot.last)
+				rotate_stack(b, 1);
+			continue ;
 		}
-		else if (temp_number > first && temp_number < median)
-			push_stack(a, b);
-		else
-			reverse_rotate_stack(a, 1);
+		reverse_rotate_stack(a, 1);
 	}
 	while (a->size > 3)
 	{
-		current = a->first;
-		temp_number = current->number;
-		if (temp_number > median && temp_number < last)
-		{
-			push_stack(a, b);
+		push_stack(a, b);
+		if (b->first->number < norm_idiot.first)
 			rotate_stack(b, 1);
-		}
-		else
-			push_stack(a, b);
 	}
 	small_sort(a, a->first->number, a->first->next->number,
 		a->first->next->next->number);
+	push_back(a, b);
+	put_smallest_on_top(a);
 }

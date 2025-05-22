@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:29:21 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/20 23:10:17 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/22 02:53:02 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,12 @@ int	to_abs(int i)
 	return (i);
 }
 
-
 int	calculate_cost(int index, int size)
 {
 	if (index >= (size / 2))
 		return (-(size - index));
-	else 
+	else
 		return (index);
-		// if (index < (size / 2))
-		// return (index);
-	// if (size - index < index)
-	// 	return (-(size - index));
-	// return (index);
 }
 
 int	ft_lstindex(t_stack *stack, t_list *list)

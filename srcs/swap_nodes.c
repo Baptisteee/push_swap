@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:01:40 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/20 22:33:11 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/22 02:52:18 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ void	swap_stack(t_stack *stack)
 	first = stack->first;
 	second = first->next;
 	third = second->next;
-	
 	stack->first = second;
 	second->next = first;
 	second->prev = NULL;
-	
 	first->prev = second;
 	first->next = third;
 	third->prev = first;
