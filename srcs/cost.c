@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:29:21 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/22 02:53:02 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/26 06:05:37 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,35 @@ int	ft_lstindex(t_stack *stack, t_list *list)
 	}
 	return (index);
 }
+
+t_list	*test(t_stack *stack, t_list *list)
+{
+	t_list	*current;
+	t_list	*before;
+	t_list	*after;
+	t_list	*min;
+	int index;
+
+	current = stack->first;
+	index = 0;
+	while (current->next)
+	{
+		if (current->number < list->number < current->next->number)
+		{
+			before = current;
+			after = current->next;
+			if (index > stack->size / 2)
+				return (after);
+			return (before);
+		}
+		index++;
+		current = current->next;
+	}
+	if (current->number < list->number < stack->first)
+		return (stack->first);
+	
+}
+
 
 t_list	*get_closer(t_stack *stack, t_list *list)
 {

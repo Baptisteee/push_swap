@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 23:39:58 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/21 21:38:13 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/26 05:38:35 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	rotate_stack(t_stack *stack, int print)
 {
 	t_list	*first;
 
+	if (stack->size < 2)
+		return ;
 	first = stack->first;
 	stack->first = first->next;
 	if (stack->first)
@@ -37,6 +39,8 @@ void	reverse_rotate_stack(t_stack *stack, int print)
 {
 	t_list	*last;
 
+	if (stack->size < 2)
+		return ;
 	last = ft_lstlast(stack->first);
 	if (last->prev)
 		last->prev->next = NULL;

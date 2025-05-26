@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:01:20 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/21 04:25:13 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/26 05:37:40 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,17 @@ static int	is_number_correct(char *num)
 	return (1);
 }
 
-static int	parse_to_tab(char **av, t_list **a)
+static int	parse_to_tab(char **av, t_list **a, int ac)
 {
 	t_list	*node;
 	int		i;
 	long	j;
 
 	(*a) = NULL;
-	i = 0;
+	if (ac == 2)
+		i = -1;
+	else
+		i = 0;
 	while (av[++i])
 	{
 		if (!is_number_correct(av[i]))
@@ -84,33 +87,28 @@ void	set_variables(t_stack *a, t_stack *b)
 	b->size = 0;
 	a->letter = 'a';
 	b->letter = 'b';
+	a->og_size = ft_lstsize(a->first);
 }
 
-int	setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack)
+int	setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack, int ac)
 {
 	t_list	*a_first;
-	t_list	*temp;
+	char	**split;
 
+	split = av;
 	(*a_stack) = (t_stack *)malloc(sizeof(t_stack));
 	if (!a_stack)
 		return (0);
 	(*b_stack) = (t_stack *)malloc(sizeof(t_stack));
 	if (!b_stack)
 		return (0);
-	if (!parse_to_tab(av, &a_first))
+	if (ac == 2)
+		split = ft_split(av[1], ' ');
+	if (!parse_to_tab(split, &a_first, ac))
+		return (0);
+	if (!a_first)
 		return (0);
 	(*a_stack)->first = a_first;
 	set_variables(*a_stack, *b_stack);
-	while (a_first)
-	{
-		temp = a_first->next;
-		while (temp)
-		{
-			if (a_first->number == temp->number)
-				return (0);
-			temp = temp->next;
-		}
-		a_first = a_first->next;
-	}
-	return (1);
+	return (check_duplicates(*a_stack));
 }

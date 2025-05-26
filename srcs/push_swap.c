@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:50:07 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/22 18:01:57 by babodere         ###   ########.fr       */
+/*   Updated: 2025/05/26 05:38:03 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,26 @@ t_norm_idiot	create_struct(int ac, int *tab)
 	return (norm_idiot);
 }
 
+void	manage_sort(t_stack *a, t_stack *b, int size, int *tab)
+{	
+	if (size == 3)
+		small_sort(a, a->first->number,
+			a->first->next->number,
+			a->first->next->next->number);
+	else if (size == 5)
+	{
+		push_stack(a, b);
+		push_stack(a, b);
+		small_sort(a, a->first->number,
+			a->first->next->number,
+			a->first->next->next->number);
+		push_back(a, b);
+		put_smallest_on_top(a);
+	}
+	else
+		algo(a, b, create_struct(size, tab));
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*a_stack;
@@ -31,21 +51,16 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	if (!setup_stacks(av, &a_stack, &b_stack))
-		return (ft_printf(ERROR_MESSAGE), free_all(a_stack, b_stack), 0);
+	if (!setup_stacks(av, &a_stack, &b_stack, ac))
+		return (ft_putstr_fd(ERROR_MESSAGE, 2), free_all(a_stack, b_stack), 0);
 	b_stack->first = NULL;
 	if (is_sorted(a_stack))
 		return (free_all(a_stack, b_stack), 0);
-	tab = get_sorted_tab(ac, av);
-	if (ac == 4)
-		small_sort(a_stack, a_stack->first->number,
-			a_stack->first->next->number,
-			a_stack->first->next->next->number);
+	if (ac == 2)
+		tab = get_sorted_tab(a_stack->size, ft_split(av[1], ' '));
 	else
-	{
-		a_stack->og_size = ft_lstsize(a_stack->first);
-		algo(a_stack, b_stack, create_struct(ac - 1, tab));
-	}
+		tab = get_sorted_tab(ac, av);
+	manage_sort(a_stack, b_stack, a_stack->size, tab);
 	free_all(a_stack, b_stack);
 	free(tab);
 	return (0);
