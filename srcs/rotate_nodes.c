@@ -28,11 +28,12 @@ void	rotate_stack(t_stack *stack, int print)
 		ft_printf("r%c\n", stack->letter);
 }
 
-void	rotate_stacks(t_stack *a_stack, t_stack *b_stack)
+void	rotate_stacks(t_stack *a_stack, t_stack *b_stack, int print)
 {
 	rotate_stack(a_stack, 0);
 	rotate_stack(b_stack, 0);
-	ft_printf("rr\n");
+	if (print)
+		ft_printf("rr\n");
 }
 
 void	reverse_rotate_stack(t_stack *stack, int print)
@@ -50,9 +51,10 @@ void	reverse_rotate_stack(t_stack *stack, int print)
 		ft_printf("rr%c\n", stack->letter);
 }
 
-void	reverse_rotate_stacks(t_stack *a_stack, t_stack *b_stack)
+void	reverse_rotate_stacks(t_stack *a_stack, t_stack *b_stack, int print)
 {
 	reverse_rotate_stack(a_stack, 0);
 	reverse_rotate_stack(b_stack, 0);
-	ft_printf("rrr\n");
+	if (print)
+		ft_printf("rrr\n");
 }

@@ -17,7 +17,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = $(addprefix ${SRCS_DIR}, push_swap.c parsing.c parsing2.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c cost.c algo.c small_algo.c median.c)
 
-CHECKER_SRCS = $(addprefix $(SRCS_DIR), checker.c parsing.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c)
+CHECKER_SRCS = $(addprefix $(SRCS_DIR), checker.c parsing.c parsing2.c rotate_nodes.c push_nodes.c swap_nodes.c utils.c)
 OBJS_CHECKER = $(SRCS:${CHECKER_SRCS}%.c=${OBJS_DIR}%.o)
 
 INCLUDES = ${SRCS_DIR}

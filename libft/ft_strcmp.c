@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing2.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 04:54:44 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/26 04:54:44 by babodere         ###   ########.fr       */
+/*   Created: 2025/06/17 10:14:12 by babodere          #+#    #+#             */
+/*   Updated: 2025/06/17 10:14:12 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	check_duplicates(t_stack *a_stack)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_list	*a_first;
-	t_list	*temp;
+	int	index;
 
-	a_first = a_stack->first;
-	while (a_first)
-	{
-		temp = a_first->next;
-		while (temp)
-		{
-			if (a_first->number == temp->number)
-				return (0);
-			temp = temp->next;
-		}
-		a_first = a_first->next;
-	}
-	return (1);
+	index = 0;
+	while (s1[index] && s2[index] && s1[index] == s2[index])
+		index++;
+	return (s1[index] - s2[index]);
 }

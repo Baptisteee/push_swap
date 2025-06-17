@@ -29,7 +29,7 @@ void	algo_100(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
 	ctr = 0;
 	while (a->size > 3)
 	{
-		push_stack(a, b);
+		push_stack(a, b, 1);
 		if (b->first->number > norm_idiot.median)
 			rotate_stack(b, 1);
 	}
@@ -44,7 +44,7 @@ void	manage_sort(t_stack *a, t_stack *b, int size, int *tab)
 	if (size == 2)
 	{
 		if (a->first->number > a->first->next->number)
-			swap_stack(a);
+			swap_stack(a, 1);
 	}
 	else if (size == 3)
 		small_sort(a, a->first->number,
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 	t_stack	*a_stack;
 	t_stack	*b_stack;
 	int		*tab;
-	
+
 	if (ac < 2)
 		return (0);
 	if (!setup_stacks(av, &a_stack, &b_stack, ac))

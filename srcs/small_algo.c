@@ -18,18 +18,18 @@ void	small_sort(t_stack *stack, int first, int second, int third)
 		return ;
 	if (first < second && second > third && first < third)
 	{
-		swap_stack(stack);
+		swap_stack(stack, 1);
 		rotate_stack(stack, 1);
 	}
 	else if (first < second && second > third && first > third)
 		reverse_rotate_stack(stack, 1);
 	else if (first > second && second < third && first < third)
-		swap_stack(stack);
+		swap_stack(stack, 1);
 	else if (first > second && second < third && first > third)
 		rotate_stack(stack, 1);
 	else if (first > second && second > third && first > third)
 	{
-		swap_stack(stack);
+		swap_stack(stack, 1);
 		reverse_rotate_stack(stack, 1);
 	}
 }
@@ -75,7 +75,7 @@ void	push_smallest(t_stack *a, t_stack *b)
 			reverse_rotate_stack(a, 1);
 		}
 	}
-	push_stack(a, b);
+	push_stack(a, b, 1);
 }
 
 void	sort_for_5(t_stack *a, t_stack *b)
@@ -85,7 +85,7 @@ void	sort_for_5(t_stack *a, t_stack *b)
 	small_sort(a, a->first->number, a->first->next->number,
 		a->first->next->next->number);
 	if (b->first->number < b->first->next->number)
-		swap_stack(b);
-	push_stack(b, a);
-	push_stack(b, a);
+		swap_stack(b, 1);
+	push_stack(b, a, 1);
+	push_stack(b, a, 1);
 }

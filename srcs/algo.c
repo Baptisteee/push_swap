@@ -42,9 +42,9 @@ void	manage_rotate(t_stack *a, t_stack *b, t_list *current)
 		&& a_rotate && b_rotate)
 	{
 		if (b_sign < 0)
-			reverse_rotate_stacks(a, b);
+			reverse_rotate_stacks(a, b, 1);
 		else
-			rotate_stacks(a, b);
+			rotate_stacks(a, b, 1);
 		b_rotate--;
 		a_rotate--;
 	}
@@ -80,7 +80,7 @@ void	push_back(t_stack *a, t_stack *b)
 		if (!current)
 			return ;
 		manage_rotate(b, a, current);
-		push_stack(b, a);
+		push_stack(b, a, 1);
 	}
 }
 
@@ -94,7 +94,7 @@ void	algo_500(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
 		if (a->first->number > norm_idiot.median)
 		{
 			ctr++;
-			push_stack(a, b);
+			push_stack(a, b, 1);
 			if (b->first->number <= norm_idiot.last)
 				rotate_stack(b, 1);
 			continue ;
@@ -103,7 +103,7 @@ void	algo_500(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
 	}
 	while (a->size > 3)
 	{
-		push_stack(a, b);
+		push_stack(a, b, 1);
 		if (b->first->number > norm_idiot.first)
 			rotate_stack(b, 1);
 	}

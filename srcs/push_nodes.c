@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push_stack(t_stack *from_stack, t_stack *to_stack)
+void	push_stack(t_stack *from_stack, t_stack *to_stack, int print)
 {
 	t_list	*pushed_node;
 
@@ -32,5 +32,6 @@ void	push_stack(t_stack *from_stack, t_stack *to_stack)
 	}
 	else
 		ft_lstadd_front(&(to_stack->first), pushed_node);
-	ft_printf("p%c\n", to_stack->letter);
+	if (print)
+		ft_printf("p%c\n", to_stack->letter);
 }
