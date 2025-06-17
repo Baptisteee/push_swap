@@ -84,7 +84,7 @@ void	push_back(t_stack *a, t_stack *b)
 	}
 }
 
-void	algo(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
+void	algo_500(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
 {
 	int	ctr;
 
@@ -104,7 +104,7 @@ void	algo(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
 	while (a->size > 3)
 	{
 		push_stack(a, b);
-		if (b->first->number < norm_idiot.first)
+		if (b->first->number > norm_idiot.first)
 			rotate_stack(b, 1);
 	}
 	small_sort(a, a->first->number, a->first->next->number,

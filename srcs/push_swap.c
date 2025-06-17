@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:50:07 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/26 05:38:03 by babodere         ###   ########.fr       */
+/*   Updated: 2025/06/17 04:22:57 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,40 @@ t_norm_idiot	create_struct(int ac, int *tab)
 	return (norm_idiot);
 }
 
+void	algo_100(t_stack *a, t_stack *b, t_norm_idiot norm_idiot)
+{
+	int	ctr;
+
+	ctr = 0;
+	while (a->size > 3)
+	{
+		push_stack(a, b);
+		if (b->first->number > norm_idiot.median)
+			rotate_stack(b, 1);
+	}
+	small_sort(a, a->first->number, a->first->next->number,
+		a->first->next->next->number);
+	push_back(a, b);
+	put_smallest_on_top(a);
+}
+
 void	manage_sort(t_stack *a, t_stack *b, int size, int *tab)
 {	
-	if (size == 3)
+	if (size == 2)
+	{
+		if (a->first->number > a->first->next->number)
+			swap_stack(a);
+	}
+	else if (size == 3)
 		small_sort(a, a->first->number,
 			a->first->next->number,
 			a->first->next->next->number);
 	else if (size == 5)
-	{
-		push_stack(a, b);
-		push_stack(a, b);
-		small_sort(a, a->first->number,
-			a->first->next->number,
-			a->first->next->next->number);
-		push_back(a, b);
-		put_smallest_on_top(a);
-	}
+		sort_for_5(a, b);
+	else if (size <= 100)
+		algo_100(a, b, create_struct(size, tab));
 	else
-		algo(a, b, create_struct(size, tab));
+		algo_500(a, b, create_struct(size, tab));
 }
 
 int	main(int ac, char **av)
@@ -48,7 +64,6 @@ int	main(int ac, char **av)
 	t_stack	*b_stack;
 	int		*tab;
 	
-
 	if (ac < 2)
 		return (0);
 	if (!setup_stacks(av, &a_stack, &b_stack, ac))
