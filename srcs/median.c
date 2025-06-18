@@ -18,6 +18,8 @@ int	*parse_to_int(int ac, char **av)
 	int	index;
 
 	tab = (int *)malloc(sizeof(int) * (ac - 1));
+	if (!tab)
+		return (NULL);
 	index = 1;
 	while (index < ac)
 	{
@@ -56,6 +58,8 @@ int	*get_sorted_tab(int ac, char **av)
 	int	*tab;
 
 	tab = parse_to_int(ac, av);
+	if (!tab)
+		return (NULL);
 	ft_sort_int_tab(tab, ac - 1);
 	return (tab);
 }

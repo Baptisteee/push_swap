@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <linux/limits.h>
+#include <stddef.h>
 
 int	check_duplicates(t_stack *a_stack)
 {
@@ -30,4 +32,50 @@ int	check_duplicates(t_stack *a_stack)
 		a_first = a_first->next;
 	}
 	return (1);
+}
+
+size_t	get_total_size(char **av, int ac)
+{
+	char	**temp;
+	size_t	size;
+	int		i;
+	int		j;
+
+	i = 0;
+	size = 0;
+	while (++i < ac)
+	{
+		j = -1;
+		temp = ft_split(av[i], ' ');
+		while (temp[++j])
+			size += ft_strlen(temp[j]);
+		free_tab(temp);
+	}
+	return (size);
+}
+
+char	*get_all_nbrs(char **av, int ac, size_t size)
+{
+	char	*retval;
+	char	**temp;
+	int		index;
+	int		i;
+
+	retval = (char *) malloc(sizeof(char) * size);
+	if (!retval)
+		return (NULL);
+	index = 0;
+	while (++index < ac)
+	{
+		i = -1;
+		temp = ft_split(av[i], ' ');
+		while (temp[++i])
+		{
+			ft_strcat(retval, temp[i]);
+			ft_strcat(retval, " ");
+		}
+		free_tab(temp);
+	}
+	retval[ft_strlen(retval)] = 0;
+	return (retval);
 }

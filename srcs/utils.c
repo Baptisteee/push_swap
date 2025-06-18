@@ -36,9 +36,11 @@ void	recursive_free(t_list *lst)
 
 void	free_all(t_stack *a, t_stack *b)
 {
-	recursive_free(a->first);
+	if (a->first)
+		recursive_free(a->first);
 	free(a);
-	recursive_free(b->first);
+	if (b->first)
+		recursive_free(b->first);
 	free(b);
 }
 

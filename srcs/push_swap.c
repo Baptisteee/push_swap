@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stddef.h>
 
 t_norm_idiot	create_struct(int ac, int *tab)
 {
@@ -58,6 +59,7 @@ void	manage_sort(t_stack *a, t_stack *b, int size, int *tab)
 		algo_500(a, b, create_struct(size, tab));
 }
 
+
 int	main(int ac, char **av)
 {
 	t_stack	*a_stack;
@@ -66,15 +68,17 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	if (!setup_stacks(av, &a_stack, &b_stack, ac))
-		return (ft_putstr_fd(ERROR_MESSAGE, 2), free_all(a_stack, b_stack), 0);
-	b_stack->first = NULL;
+	ft_printf("%d\n\n\n\n", get_total_size(av, ac));
+	if (!setup_stacks(av, &a_stack, &b_stack))
+		return (ft_putstr_fd(ERROR_MESSAGE, 2), 1);
 	if (is_sorted(a_stack))
-		return (free_all(a_stack, b_stack), 0);
+		return (free_all(a_stack, b_stack), 1);
 	if (ac == 2)
 		tab = get_sorted_tab(a_stack->size, ft_split(av[1], ' '));
 	else
 		tab = get_sorted_tab(ac, av);
+	if (!tab)
+		return (ft_putstr_fd("Error\n", 2), free_all(a_stack, b_stack), 1);
 	manage_sort(a_stack, b_stack, a_stack->size, tab);
 	free_all(a_stack, b_stack);
 	free(tab);

@@ -64,8 +64,6 @@ int	main(int ac, char **av)
 	if (!setup_stacks(av, &a_stack, &b_stack, ac))
 		return (ft_printf(ERROR_MESSAGE), free_all(a_stack, b_stack), 0);
 	b_stack->first = NULL;
-	if (is_sorted(a_stack))
-		return (free_all(a_stack, b_stack), 0);
 	line = get_next_line(0);
 	while (line)
 	{
