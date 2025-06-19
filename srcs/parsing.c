@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 17:01:20 by babodere          #+#    #+#             */
-/*   Updated: 2025/06/19 14:56:52 by babodere         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:02:44 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,6 @@ int	setup_stacks(char *av, t_stack **a_stack, t_stack **b_stack)
 	(*a_stack)->first = a_first;
 	set_variables(*a_stack, *b_stack);
 	if (!check_duplicates(*a_stack))
-	{
-		free(*a_stack);
-		free(*b_stack);
-		return (0);
-	}
+		return (free(*a_stack), free(*b_stack), 0);
 	return (1);
 }
