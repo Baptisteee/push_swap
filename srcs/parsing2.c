@@ -47,8 +47,10 @@ size_t	get_total_size(char **av, int ac)
 	{
 		j = -1;
 		temp = ft_split(av[i], ' ');
+		if (!temp)
+			return (0);
 		while (temp[++j])
-			size += ft_strlen(temp[j]);
+			size += ft_strlen(temp[j]) + 1;
 		free_tab(temp);
 	}
 	return (size);
@@ -61,14 +63,18 @@ char	*get_all_nbrs(char **av, int ac, size_t size)
 	int		index;
 	int		i;
 
-	retval = (char *) malloc(sizeof(char) * size);
+	if (size == 0)
+		return (NULL);
+	retval = ft_calloc(sizeof(char), size + 1);
 	if (!retval)
 		return (NULL);
 	index = 0;
 	while (++index < ac)
 	{
 		i = -1;
-		temp = ft_split(av[i], ' ');
+		temp = ft_split(av[index], ' ');
+		if (!temp)
+			return (free(retval), NULL);
 		while (temp[++i])
 		{
 			ft_strcat(retval, temp[i]);
@@ -76,6 +82,5 @@ char	*get_all_nbrs(char **av, int ac, size_t size)
 		}
 		free_tab(temp);
 	}
-	retval[ft_strlen(retval)] = 0;
-	return (retval);
+	return (retval[ft_strlen(retval)] = 0, retval);
 }

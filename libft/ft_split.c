@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	count_words(const char *s, char c)
 {
@@ -46,7 +47,7 @@ void	free_tab(char **tab)
 	int	index;
 
 	index = 0;
-	while (tab[index])
+	while (tab && tab[index])
 		free(tab[index++]);
 	free(tab);
 }

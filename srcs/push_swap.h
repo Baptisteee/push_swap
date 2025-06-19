@@ -13,13 +13,14 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stddef.h>
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 # define ERROR_MESSAGE "Error\n"
 
 # include "../libft/libft.h"
+
 # include <stdio.h>
+# include <stddef.h>
 
 typedef struct stack
 {
@@ -40,10 +41,10 @@ typedef struct norm_idiot
 int			to_abs(int i);
 int			is_sorted(t_stack *stack);
 int			is_between(t_list *prev, t_list *next, t_list *node);
-int			setup_stacks(char **av, t_stack **a_stack, t_stack **b_stack);
+int			setup_stacks(char *av, t_stack **a_stack, t_stack **b_stack);
 int			calculate_cost(int index, int size);
 int			ft_lstindex(t_stack *stack, t_list *list);
-int			*get_sorted_tab(int ac, char **av);
+int			*get_sorted_tab(char *av);
 int			check_duplicates(t_stack *a_stack);
 void		reverse_rotate_stacks(t_stack *a_stack, t_stack *b_stack, int p);
 void		sort_for_5(t_stack *a, t_stack *b);
@@ -63,5 +64,6 @@ void		put_smallest_on_top(t_stack *stack);
 size_t		get_total_size(char **av, int ac);
 t_list		*get_smallest_cost(t_stack *a, t_stack *b);
 t_list		*get_closer(t_stack *stack, t_list *list);
+char		*get_all_nbrs(char **av, int ac, size_t size);
 
 #endif

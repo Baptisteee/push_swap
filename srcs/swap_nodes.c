@@ -18,6 +18,8 @@ void	swap_stack(t_stack *stack, int print)
 	t_list	*second;
 	t_list	*third;
 
+	if (!stack || !stack->first)
+		return ;
 	first = stack->first;
 	second = first->next;
 	third = second->next;

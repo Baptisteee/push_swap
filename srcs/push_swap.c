@@ -6,7 +6,7 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:50:07 by babodere          #+#    #+#             */
-/*   Updated: 2025/06/17 04:22:57 by babodere         ###   ########.fr       */
+/*   Updated: 2025/06/19 14:59:46 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,30 @@ void	manage_sort(t_stack *a, t_stack *b, int size, int *tab)
 		algo_500(a, b, create_struct(size, tab));
 }
 
-
 int	main(int ac, char **av)
 {
 	t_stack	*a_stack;
 	t_stack	*b_stack;
+	char	*input;
 	int		*tab;
 
 	if (ac < 2)
 		return (0);
-	ft_printf("%d\n\n\n\n", get_total_size(av, ac));
-	if (!setup_stacks(av, &a_stack, &b_stack))
-		return (ft_putstr_fd(ERROR_MESSAGE, 2), 1);
+	input = get_all_nbrs(av, ac, get_total_size(av, ac));
+	if (!input)
+		return (ft_putstr_fd("Error\n", 2), 1);
+	if (!setup_stacks(input, &a_stack, &b_stack))
+		return (free(input), ft_putstr_fd(ERROR_MESSAGE, 2), 1);
+	b_stack->first = NULL;
 	if (is_sorted(a_stack))
-		return (free_all(a_stack, b_stack), 1);
-	if (ac == 2)
-		tab = get_sorted_tab(a_stack->size, ft_split(av[1], ' '));
-	else
-		tab = get_sorted_tab(ac, av);
+		return (free(input), free_all(a_stack, b_stack), 1);
+	tab = get_sorted_tab(input);
 	if (!tab)
-		return (ft_putstr_fd("Error\n", 2), free_all(a_stack, b_stack), 1);
+		return (free(input), ft_putstr_fd("Error\n", 2),
+			free_all(a_stack, b_stack), 1);
 	manage_sort(a_stack, b_stack, a_stack->size, tab);
 	free_all(a_stack, b_stack);
 	free(tab);
+	free(input);
 	return (0);
 }

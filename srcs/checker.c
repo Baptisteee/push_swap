@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <signal.h>
+#include <unistd.h>
 
 int	manage_move(t_stack *a, t_stack *b, char *line)
 {
@@ -47,35 +47,42 @@ void	print_result(int i)
 		ft_printf("KO\n");
 }
 
-void	free_everything(char *line, t_stack *a, t_stack *b)
+void	read_checker_line(t_stack *a_stack, t_stack *b_stack)
 {
-	free(line);
-	free_all(a, b);
-}
-
-int	main(int ac, char **av)
-{
-	t_stack	*a_stack;
-	t_stack	*b_stack;
 	char	*line;
 
-	if (ac < 2)
-		return (0);
-	if (!setup_stacks(av, &a_stack, &b_stack, ac))
-		return (ft_printf(ERROR_MESSAGE), free_all(a_stack, b_stack), 0);
-	b_stack->first = NULL;
 	line = get_next_line(0);
 	while (line)
 	{
 		if (manage_move(a_stack, b_stack, line))
 		{
 			ft_printf("Error\n");
-			free_everything(line, a_stack, b_stack);
+			free(line);
+			free_all(a_stack, b_stack);
 			exit(1);
 		}
 		free(line);
 		line = get_next_line(0);
 	}
+	free(line);
+}
+
+int	main(int ac, char **av)
+{
+	t_stack	*a_stack;
+	t_stack	*b_stack;
+	char	*input;
+
+	if (ac < 2)
+		return (0);
+	input = get_all_nbrs(av, ac, get_total_size(av, ac));
+	if (!input)
+		return (1);
+	if (!setup_stacks(input, &a_stack, &b_stack))
+		return (free(input), ft_putstr_fd(ERROR_MESSAGE, 2), 1);
+	b_stack->first = NULL;
+	read_checker_line(a_stack, b_stack);
 	print_result(is_sorted(a_stack));
-	free_everything(line, a_stack, b_stack);
+	free(input);
+	free_all(a_stack, b_stack);
 }

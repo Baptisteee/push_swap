@@ -6,24 +6,25 @@
 /*   By: babodere <babodere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 01:58:43 by babodere          #+#    #+#             */
-/*   Updated: 2025/05/22 02:54:26 by babodere         ###   ########.fr       */
+/*   Updated: 2025/06/19 04:03:37 by babodere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stddef.h>
 
 int	*parse_to_int(int ac, char **av)
 {
 	int	*tab;
 	int	index;
 
-	tab = (int *)malloc(sizeof(int) * (ac - 1));
+	tab = (int *)malloc(sizeof(int) * ac);
 	if (!tab)
 		return (NULL);
-	index = 1;
+	index = 0;
 	while (index < ac)
 	{
-		tab[index - 1] = ft_atoi(av[index]);
+		tab[index] = ft_atoi(av[index]);
 		index++;
 	}
 	return (tab);
@@ -53,13 +54,32 @@ void	ft_sort_int_tab(int *tab, int len)
 	}
 }
 
-int	*get_sorted_tab(int ac, char **av)
+size_t	get_tab_size(char **tab)
 {
-	int	*tab;
+	size_t	size;
+	int		index;
 
-	tab = parse_to_int(ac, av);
-	if (!tab)
+	size = 0;
+	index = -1;
+	while (tab[++index])
+		size++;
+	return (size);
+}
+
+int	*get_sorted_tab(char *av)
+{
+	int		*tab;
+	char	**splitted_av;
+	size_t	size;
+
+	splitted_av = ft_split(av, ' ');
+	if (!splitted_av)
 		return (NULL);
-	ft_sort_int_tab(tab, ac - 1);
+	size = get_tab_size(splitted_av);
+	tab = parse_to_int(size, splitted_av);
+	if (!tab)
+		return (free_tab(splitted_av), NULL);
+	ft_sort_int_tab(tab, size);
+	free_tab(splitted_av);
 	return (tab);
 }
